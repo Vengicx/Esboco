@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jul-2018 às 20:57
+-- Generation Time: 27-Jul-2018 às 21:04
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -21,6 +21,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `testetcc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `materiaprima`
+--
+
+CREATE TABLE `materiaprima` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `quantidade` float NOT NULL,
+  `precoCompra` float NOT NULL,
+  `precoVenda` float NOT NULL,
+  `tipoProduto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `materiaprima`
+--
+
+INSERT INTO `materiaprima` (`id`, `nome`, `quantidade`, `precoCompra`, `precoVenda`, `tipoProduto`) VALUES
+(1, 'ds', 1, 2, 3, 1),
+(8, 'ca', 10, 20, 40, 1),
+(11, 'sddassd', 5, 10, 40, 1),
+(12, 'Coca cola 250 eme eles', 50, 5, 10, 2),
+(13, 'Sprite', 50, 5, 10, 1),
+(14, 'Sprite', 50, 5, 10, 1),
+(15, 'DASLFKDPSMFF´~S', 50, 5, 10, 1),
+(16, 'DSSSSSSSSSSSSSSSSS', 50, 5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -53,13 +82,14 @@ INSERT INTO `pedido` (`id`, `cliente`, `sabor`, `tamanho`, `andamento`, `horaPed
 (9, '20', 'Moda da Casa', 'pequeno', 3, '14:00:34'),
 (10, '21', 'Catupiry', 'grande', 3, '14:03:53'),
 (11, '2121', 'Catupiry', 'grande', 3, '14:04:38'),
-(12, '12', 'Queijo', 'gigante', 1, '14:04:45'),
+(12, '12', 'Queijo', 'gigante', 3, '14:04:45'),
 (13, '5', 'Queijo', 'pequeno', 3, '14:04:50'),
 (14, '97', 'Peperoni', 'medio', 3, '14:04:57'),
 (15, '963', 'Catupiry', 'grande', 3, '14:06:40'),
 (16, '20', 'Queijo', 'medio', 3, '14:18:11'),
 (17, '20', 'Peperoni', 'medio', 3, '14:31:40'),
-(18, '999999999', 'Catupiry', 'gigante', 3, '15:45:03');
+(18, '999999999', 'Catupiry', 'gigante', 3, '15:45:03'),
+(19, '200', 'Catupiry', 'medio', 3, '13:36:24');
 
 -- --------------------------------------------------------
 
@@ -79,12 +109,37 @@ CREATE TABLE `situacao` (
 INSERT INTO `situacao` (`id`, `andamento`) VALUES
 (1, 'Pedido Feito'),
 (2, 'Em Produção'),
-(3, 'Pronto'),
-(4, 'Entregue');
+(3, 'Pronto');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipoproduto`
+--
+
+CREATE TABLE `tipoproduto` (
+  `id` int(11) NOT NULL,
+  `tipoMateria` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tipoproduto`
+--
+
+INSERT INTO `tipoproduto` (`id`, `tipoMateria`) VALUES
+(1, 'Acompanhamento'),
+(2, 'Materia Prima');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `materiaprima`
+--
+ALTER TABLE `materiaprima`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tipoProduto` (`tipoProduto`);
 
 --
 -- Indexes for table `pedido`
@@ -100,14 +155,26 @@ ALTER TABLE `situacao`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tipoproduto`
+--
+ALTER TABLE `tipoproduto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `materiaprima`
+--
+ALTER TABLE `materiaprima`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `situacao`
@@ -116,8 +183,20 @@ ALTER TABLE `situacao`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `tipoproduto`
+--
+ALTER TABLE `tipoproduto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `materiaprima`
+--
+ALTER TABLE `materiaprima`
+  ADD CONSTRAINT `materiaprima_ibfk_1` FOREIGN KEY (`tipoProduto`) REFERENCES `tipoproduto` (`id`);
 
 --
 -- Limitadores para a tabela `pedido`

@@ -20,6 +20,9 @@
 		    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			    <a class="dropdown-item" href="index.php?fd=cadastro&pg=mesa">Mesa</a>
 		  	</div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="index.php?fd=cadastro&pg=produto">Produto</a>
+        </div>
 		    </div>    
       </li>
     </ul>

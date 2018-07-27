@@ -16,6 +16,10 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
         margin: 10px;
     }
 
+    .btn-warning{
+        float: right;
+    }
+
 </style>
 </head>
 <body>
@@ -39,22 +43,21 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
             if($andamento == "1"){
                 $botao = "<a href='salvar/prepararPedido.php?id=$id' class='btn btn-primary'>Preparar</a>";
             }elseif($andamento == "2"){
-                $botao = "<a href='#' class='btn btn-warning'>Preparando</a> 
-                          <a href='salvar/prepararPedido.php?id=$id' class='btn btn-success'>Pronto!</a>";
+                $botao = "<a href='salvar/prepararPedido.php?id=$id' class='btn btn-success'>Pronto!</a>";
+                $botaoWarning = "<a href='#' class='btn btn-warning'>Preparando...</a>";
             }else{
                 die();
             }
 
             echo "<div class='card bg-secondary text-white' style='width: 18rem;'>
+                    $botaoWarning
                     <div class='card-body'>
                         <h5 class='card-title'>$sabor</h5>
                         <p class='card-text'>Pedido Nº: $id</p>
                         <p class='card-text'>Mesa/Cliente: $cliente</p>
                         <p class='card-text'>Tamanho: $tamanho</p>
                         <p class='card-text'>Hora do Pedido: $horaPedido</p>
-
                         $botao
-
                     </div>
                 </div>";
 

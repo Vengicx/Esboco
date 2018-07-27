@@ -7,7 +7,6 @@
 
 		if(isset($_POST["tamanho"])){
 			$tamanho = trim ($_POST["tamanho"]);
-
 		}
 
 		if(isset($_POST["sabor"])){
