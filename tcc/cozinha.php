@@ -29,7 +29,10 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
 
         $sql = ("SELECT * FROM pedido order by andamento");
         $consulta = $pdo->prepare($sql);
-        $consulta->execute();
+        
+        if(!$consulta->execute()){
+             echo"<script>alert('Erro ao consultar pedidos');</script>";
+        }
         
         $c = 0; //contador 
         while($dados = $consulta->fetch(PDO::FETCH_OBJ)){//ele só vai entrar no while se o $dados for verdadeiro
@@ -48,7 +51,9 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
             }else{
                 die();
             }
-
+            if(!isset($botaoWarning)){
+                $botaoWarning = "";
+            }
             echo "<div class='card bg-secondary text-white' style='width: 18rem;'>
                     $botaoWarning
                     <div class='card-body'>

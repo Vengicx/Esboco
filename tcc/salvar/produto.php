@@ -31,7 +31,7 @@
 	$consulta->bindParam(4, $precoVenda);
 	$consulta->bindParam(5, $tipoProduto);
 
-	if($consulta->execute()){;
+	if($consulta->execute()){
 		$pdo->commit();
 		echo "<script>alert('Produto cadastrado com sucesso!');history.back();</script>";
 		
