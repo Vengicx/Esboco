@@ -1,39 +1,81 @@
-<form method="post" action="index.php?fd=salvar&pg=produto">
-  <div class="form-row">
-	  <div class="form-group col-md-12">
-	    <label for="mesa">ID do produto</label>
-	    <input type="number" class="form-control" name="mesa" placeholder="ID do produto" disabled>
-	  </div>
-	  <div class="form-group col-md-6">
-	    <label for="nomeProduto">Nome do Produto</label>
-	    <input type="text" class="form-control" name="nomeProduto" placeholder="Digite o nome do produto" required>
-	  </div>
-	  <div class="form-group col-md-3">
-	    <label for="nomeProduto">Quantidade</label>
-	    <input type="number" class="form-control" name="quantidade" placeholder="Digite a quantidade a cadastrar" required>
-	  </div>
-	  <div class="form-group col-md-6">
-	    <label for="precoCompra">Preço de Compra (Por Unidade)</label>
-	    <input type="text" class="form-control" name="precoCompra" placeholder="Digite o preço de compra" required>
-	  </div>	
-	  <div class="form-group col-md-6">
-	    <label for="precoVenda">Preço de Venda (Por Unidade)</label>
-	    <input type="text" class="form-control" name="precoVenda" placeholder="Digite o preço de Venda" required>
-	  </div>
-	  <div class="col-md-12">
-		<div class="form-check">
-		  <input class="form-check-input" type="radio" name="tipoProduto" value="1">
-		  <label class="form-check-label" for="tipoProduto">
-		    Acompanhamento
-		  </label>
-		</div>
-		<div class="form-check">
-		  <input class="form-check-input" type="radio" name="tipoProduto" value="2">
-		  <label class="form-check-label" for="tipoProduto">
-		    Matéria-Prima
-		  </label>
-		</div>
-	</div>
-		<button type="submit" class="btn btn-primary col-md-3" style="margin: 0 auto;">Enviar</button>
-   </div><!-- fim do form row-->
-</form>
+<style>
+    .card{
+        float: left;
+        margin: 10px;
+    }
+
+    #resultado {
+        float: left !important;
+        position: fixed !important;
+    }
+
+</style>
+    <h1 class="text-center">Cadastro de novo Produto</h1>
+    <form class="form-inline my-2 my-lg-0" action="#" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Search" name="procurar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+    </form>
+</div>
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Novo Pedido</div>
+    <form>
+        <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nome do Produto" name="nomeProduto">
+
+  </div>
+</div>
+<div class="container">
+<?php
+        require "conecta.php";
+        
+        if(isset($_POST["procurar"])){
+            $nome = trim ($_POST["procurar"]);
+            $nome = "%$nome%";
+        }
+
+        if(isset($nome)){
+            $consulta = $pdo->prepare("SELECT * FROM materiaprima WHERE nome LIKE ?");
+            $consulta->bindParam(1, $nome);
+
+        }else{ 
+            $consulta = $pdo->prepare("SELECT * FROM materiaprima WHERE tipoProduto = 2 order by nome");
+
+        }
+
+        $consulta->execute();
+        
+        $c = 0; //contador 
+        
+        while($dados = $consulta->fetch(PDO::FETCH_OBJ)){//ele só vai entrar no while se o $dados for verdadeiro
+            $id = $dados->id;
+            $nome = $dados->nome;
+            $quantidade = $dados->quantidade;
+            $precoCompra = $dados->precoCompra;
+            $precoVenda = $dados->precoVenda;
+            $tipoProduto = $dados->tipoProduto;
+
+            echo "<div class='card' style='width: 18rem;'> 
+                    <div class='card-body'>
+                        <h5 class='card-title'>$nome</h5>
+                        <p class='card-text'>ID: $id</p>
+                        <p class='card-text'>Nome: $nome</p>
+                        <p class='card-text'>Preço Compra: $precoCompra</p>
+                        <p class='card-text'>Preço Venda: $precoVenda</p>
+                        <div class='btn-group-toggle' data-toggle='buttons'>
+                            <label class='btn btn-secondary active'>
+                                <input type='checkbox'> Checked
+                            </label>
+                        </div>
+                    </div>
+                </div>";
+
+            $c = 1;
+        }
+
+        if($c == 0){
+          echo 'Matéria Prima não encontrada';
+        }
+
+
+        ?>
+</div>

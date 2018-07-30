@@ -13,18 +13,15 @@
         <a class="nav-link" href="index.php?fd=.&pg=cozinha">Cozinha</a>
       </li>
       <li class="nav-item active">
-		    <div class="dropdown show">
-    			<a class="dropdown-toggle nav-link active" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      			Cadastro
-    			</a>
-		    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-			    <a class="dropdown-item" href="index.php?fd=cadastro&pg=mesa">Mesa</a>
-		  	</div>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="index.php?fd=cadastro&pg=produto">Produto</a>
-        </div>
-		    </div>    
+        <a class="nav-link" href="index.php?fd=cadastro&pg=materiaprima">MateriaPrima</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php?fd=cadastro&pg=produto">Produto</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php?fd=cadastro&pg=mesa">Mesa</a>
+      </li>
+
     </ul>
   </div>
 </nav>
