@@ -19,6 +19,9 @@
         <a class="nav-link" href="index.php?fd=cadastro&pg=produto">Produto</a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="index.php?fd=cadastro&pg=produtoplus">Produto V. 2</a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="index.php?fd=cadastro&pg=mesa">Mesa</a>
       </li>
 

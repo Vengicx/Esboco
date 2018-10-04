@@ -34,7 +34,7 @@
         }
 
         if(isset($nome)){
-            $consulta = $pdo->prepare("SELECT * FROM materiaprima WHERE nome LIKE ?");
+            $consulta = $pdo->prepare("SELECT * FROM materiaprima WHERE nome or id LIKE ?");
             $consulta->bindParam(1, $nome);
 
         }else{ 
@@ -60,22 +60,37 @@
                         <p class='card-text'>ID: $id</p>
                         <p class='card-text'>Nome: $nome</p>
                         <p class='card-text'>Preço Compra: $precoCompra</p>
-                        <p class='card-text'>Preço Venda: $precoVenda</p>
-                        <div class='btn-group-toggle' data-toggle='buttons'>
-                            <label class='btn btn-secondary active'>
-                                <input type='checkbox'> Checked
-                            </label>
-                        </div>
+                        <p class='card-text'>Preço Venda: $precoVenda</p>  
+                        <button type='button' class='btn btn-primary' data-toggle='button' aria-pressed='false' id='id$id' autocomplete='off'>
+                            Adicionar Produto
+                        </button>
                     </div>
                 </div>";
 
             $c = 1;
         }
 
+
         if($c == 0){
           echo 'Matéria Prima não encontrada';
         }
 
 
-        ?>
+        ?>  
 </div>
+<script>
+    function adicionarChecklist($id){
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
